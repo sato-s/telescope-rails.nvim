@@ -17,9 +17,8 @@ Load this extension.
 require("telescope").load_extension("rails")
 ```
 
+(optional) Add shortcuts.
 ```
-(optional) 
-
 nnoremap <leader>rs :Telescope rails specs<CR>
 nnoremap <leader>rc :Telescope rails controllers<CR>
 nnoremap <leader>rm :Telescope rails models<CR>
