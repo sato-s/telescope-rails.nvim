@@ -5,6 +5,8 @@ local conf = require("telescope.config").values
 local entry_display = require("telescope.pickers.entry_display")
 local action_state = require("telescope.actions.state")
 
+local flatten = vim.tbl_flatten
+
 local find_rails = function(target, opts)
   opts = opts or {}
   local path = "app/" .. target .. "/"
@@ -14,7 +16,7 @@ local find_rails = function(target, opts)
       "find", path, "-type", "f",
       entry_maker = function(entry)
         return {
-          value = entry,
+          value = "hoge",
           -- display = entry[1],
           display = "hoge",
           ordinal = entry[1],
