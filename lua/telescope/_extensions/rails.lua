@@ -23,9 +23,8 @@ local displayer = function(table)
   return path_to_class_name(path)
 end
 
-local find_rails = function(target, opts)
+local find_rails = function(target, path, opts)
   opts = opts or {}
-  local path = "app/" .. target .. "/"
   pickers.new(opts, {
     prompt_title = target,
     finder = finders.new_oneshot_job({
@@ -47,16 +46,21 @@ local find_rails = function(target, opts)
 end
 
 local find_models = function(opts)
-  find_rails("models", opts)
+  find_rails("models", "app/models/", opts)
 end
 
 local find_controllers = function(opts)
-  find_rails("controllers", opts)
+  find_rails("controllers", "app/controllers/", opts)
+end
+
+local find_specs = function(opts)
+  find_rails("specs", "spec", opts)
 end
 
 return require("telescope").register_extension({
   exports = {
     models = find_models,
     controllers = find_controllers,
+    specs = find_specs,
   },
 })
