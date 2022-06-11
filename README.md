@@ -1,6 +1,6 @@
 # telescope-rails.nvim
 
-[ctrlp-rails](https://github.com/iurifq/ctrlp-rails.vim) for telescope.nvim
+[ctrlp-rails](https://github.com/iurifq/ctrlp-rails.vim) for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 
 ## Installation
 
