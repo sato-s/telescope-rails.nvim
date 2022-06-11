@@ -5,15 +5,14 @@ local conf = require("telescope.config").values
 local entry_display = require("telescope.pickers.entry_display")
 local action_state = require("telescope.actions.state")
 
--- our picker function: colors
-local colors = function(opts)
+local find_rails = function(target, opts)
   opts = opts or {}
+  local path = "app/" .. target .. "/"
   pickers.new(opts, {
-    prompt_title = "colors",
+    prompt_title = target,
     finder = finders.new_oneshot_job({
-      "find", "-type", "f",
+      "find", path, "-type", "f",
       entry_maker = function(entry)
-        print(entry)
         return {
           value = entry,
           -- display = entry[1],
@@ -34,10 +33,18 @@ local colors = function(opts)
     -- end,
   }):find()
 end
-colors()
+
+local find_models = function(opts)
+  find_rails("models", opts)
+end
+
+local find_controllers = function(opts)
+  find_rails("controllers", opts)
+end
 
 return require("telescope").register_extension({
   exports = {
-    rails = colors,
+    models = find_models,
+    controllers = find_controllers,
   },
 })
