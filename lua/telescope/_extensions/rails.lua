@@ -15,7 +15,6 @@ local path_to_class_name = function(path, target)
 end
 
 local displayer = function(table, target)
-  print(target)
   path = table["value"]
   return path_to_class_name(path, target)
 end
