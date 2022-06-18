@@ -14,9 +14,23 @@ local path_to_class_name = function(path, target)
   return s:sub(1, -4)
 end
 
-local displayer = function(table, target)
+local displayer = entry_display.create({
+  separator = " ",
+  items = {
+    { width = 40 },
+    { width = 18 },
+    { remaining = true },
+  },
+})
+
+local make_display = function(table, target)
   path = table["value"]
-  return path_to_class_name(path, target)
+  value = path_to_class_name(path, target)
+  return displayer({
+    value,
+    "1",
+    "2",
+  })
 end
 
 local find_rails = function(target, path, opts)
@@ -30,10 +44,9 @@ local find_rails = function(target, path, opts)
       "f",
     }, {
       entry_maker = function(entry)
-        print(type(entry))
         return {
           value = entry,
-          display = function(table) return displayer(table, path) end,
+          display = function(table) return make_display(table, path) end,
           ordinal = entry,
         }
       end,
