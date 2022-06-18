@@ -5,22 +5,19 @@ local conf = require("telescope.config").values
 local entry_display = require("telescope.pickers.entry_display")
 local action_state = require("telescope.actions.state")
 
-local path_to_file_name = function(path)
-  local last;
-  for match in (path.."/"):gmatch("(.-)".."/") do
-     last = match
-  end
-  return last
+local path_to_file_name = function(path, target)
+  return path:sub(#target + 1)
 end
 
-local path_to_class_name = function(path)
-  s = path_to_file_name(path)
+local path_to_class_name = function(path, target)
+  s = path_to_file_name(path, target)
   return s:sub(1, -4)
 end
 
-local displayer = function(table)
+local displayer = function(table, target)
+  print(target)
   path = table["value"]
-  return path_to_class_name(path)
+  return path_to_class_name(path, target)
 end
 
 local find_rails = function(target, path, opts)
@@ -35,7 +32,7 @@ local find_rails = function(target, path, opts)
         print(type(entry))
         return {
           value = entry,
-          display = displayer,
+          display = function(table) return displayer(table, path) end,
           ordinal = entry,
         }
       end
