@@ -5,49 +5,45 @@ local conf = require("telescope.config").values
 local entry_display = require "telescope.pickers.entry_display"
 local action_state = require "telescope.actions.state"
 
-local path_to_file_name = function(path, target)
-  return path:sub(#target + 1)
+function path_to_display_name(file, target_path)
+  path_without_prefix = file:sub(#target_path + 1)
+  path_without_prefix_without_extension = path_without_prefix:sub(1, -4)
+  return path_without_prefix_without_extension
 end
 
-local path_to_class_name = function(path, target)
-  s = path_to_file_name(path, target)
-  return s:sub(1, -4)
-end
-
-local displayer = entry_display.create({
+local displayer = entry_display.create {
   separator = " ",
   items = {
     { width = 40 },
-    { width = 18 },
     { remaining = true },
   },
-})
+}
 
-local make_display = function(table, target)
-  path = table["value"]
-  value = path_to_class_name(path, target)
-  return displayer({
-    value,
-    "1",
-    "2",
-  })
+local make_display = function(table)
+  return displayer {
+    table.ordinal,
+  }
 end
 
-local find_rails = function(target, path, opts)
+local find_rails = function(target, target_path, opts)
   opts = opts or {}
   pickers.new(opts, {
     prompt_title = target,
     finder = finders.new_oneshot_job({
       "find",
-      path,
+      target_path,
       "-type",
       "f",
     }, {
-      entry_maker = function(entry)
+      entry_maker = function(file)
+        local path_without_prefix = path_to_display_name(file, target_path)
         return {
-          value = entry,
-          display = function(table) return make_display(table, path) end,
-          ordinal = entry,
+          value = file,
+          display = function(table)
+            return make_display(table)
+          end,
+          ordinal = path_without_prefix,
+          path = file,
         }
       end,
     }),
