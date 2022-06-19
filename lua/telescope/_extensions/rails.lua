@@ -60,7 +60,7 @@ local find_controllers = function(opts)
 end
 
 local find_specs = function(opts)
-  find_rails("specs", "spec", opts)
+  find_rails("specs", "spec/", opts)
 end
 
 return require("telescope").register_extension {
