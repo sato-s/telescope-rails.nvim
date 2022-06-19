@@ -22,6 +22,7 @@ require("telescope").load_extension("rails")
 nnoremap <leader>rs :Telescope rails specs<CR>
 nnoremap <leader>rc :Telescope rails controllers<CR>
 nnoremap <leader>rm :Telescope rails models<CR>
+nnoremap <leader>rv :Telescope rails views<CR>
 ```
 
 ## Usage
@@ -31,5 +32,6 @@ nnoremap <leader>rm :Telescope rails models<CR>
 :Telescope rails controllers
 :Telescope rails specs
 :Telescope rails models
+:Telescope rails views
 ```
 

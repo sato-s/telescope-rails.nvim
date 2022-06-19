@@ -63,10 +63,15 @@ local find_specs = function(opts)
   find_rails("specs", "spec/", opts)
 end
 
+local find_views = function(opts)
+  find_rails("views", "app/views/", opts)
+end
+
 return require("telescope").register_extension {
   exports = {
     models = find_models,
     controllers = find_controllers,
     specs = find_specs,
+    views = find_views,
   },
 }
