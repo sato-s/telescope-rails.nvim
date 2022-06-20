@@ -6,7 +6,7 @@ local entry_display = require "telescope.pickers.entry_display"
 local action_state = require "telescope.actions.state"
 
 function path_to_display_name(file, target_path)
-  path_without_prefix = file:sub(#target_path + 1)
+  path_without_prefix = file:sub(#target_path + 2)
   path_without_prefix_without_extension = path_without_prefix:sub(1, -4)
   return path_without_prefix_without_extension
 end
@@ -52,19 +52,19 @@ local find_rails = function(target, target_path, opts)
 end
 
 local find_models = function(opts)
-  find_rails("models", "app/models/", opts)
+  find_rails("models", "app/models", opts)
 end
 
 local find_controllers = function(opts)
-  find_rails("controllers", "app/controllers/", opts)
+  find_rails("controllers", "app/controllers", opts)
 end
 
 local find_specs = function(opts)
-  find_rails("specs", "spec/", opts)
+  find_rails("specs", "spec", opts)
 end
 
 local find_views = function(opts)
-  find_rails("views", "app/views/", opts)
+  find_rails("views", "app/views", opts)
 end
 
 return require("telescope").register_extension {
