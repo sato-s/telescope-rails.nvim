@@ -7,14 +7,12 @@ local action_state = require "telescope.actions.state"
 
 function path_to_display_name(file, target_path)
   path_without_prefix = file:sub(#target_path + 2)
-  -- path_without_prefix_without_extension = path_without_prefix:sub(1, -4)
   return path_without_prefix
 end
 
 local displayer = entry_display.create {
   separator = " ",
   items = {
-    { width = 40 },
     { remaining = true },
   },
 }
