@@ -8,8 +8,7 @@ local action_state = require "telescope.actions.state"
 function path_to_display_name(file, target_path)
   path_without_prefix = file:sub(#target_path + 2)
 
--- delete extension
-  return path_without_prefix:match("(.+)%..+$")
+  return path_without_prefix
 end
 
 local displayer = entry_display.create {
