@@ -54,6 +54,14 @@ local find_models = function(opts)
   find_rails("models", "app/models", opts)
 end
 
+local find_libs = function(opts)
+  find_rails("libs", "lib", opts)
+end
+
+local find_migrations = function(opts)
+  find_rails("migrations", "db/migrate", opts)
+end
+
 local find_controllers = function(opts)
   find_rails("controllers", "app/controllers", opts)
 end
@@ -70,6 +78,8 @@ return require("telescope").register_extension {
   exports = {
     models = find_models,
     controllers = find_controllers,
+    libs = find_libs,
+    migrations = find_migrations,
     specs = find_specs,
     views = find_views,
   },

@@ -23,6 +23,8 @@ nnoremap <leader>rs :Telescope rails specs<CR>
 nnoremap <leader>rc :Telescope rails controllers<CR>
 nnoremap <leader>rm :Telescope rails models<CR>
 nnoremap <leader>rv :Telescope rails views<CR>
+nnoremap <leader>ri :Telescope rails migrations<CR>
+nnoremap <leader>rl :Telescope rails libs<CR>
 ```
 
 ## Usage
@@ -33,5 +35,7 @@ nnoremap <leader>rv :Telescope rails views<CR>
 :Telescope rails specs
 :Telescope rails models
 :Telescope rails views
+:Telescope rails migrations
+:Telescope rails libs
 ```
 
