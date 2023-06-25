@@ -1,0 +1,14 @@
+name: ci
+on:
+  pull_request:
+    types: [synchronize]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: JohnnyMorganz/stylua-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 0.18.0
+          args: --check .

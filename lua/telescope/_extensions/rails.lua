@@ -26,28 +26,30 @@ end
 
 local find_rails = function(target, target_path, opts)
   opts = opts or {}
-  pickers.new(opts, {
-    prompt_title = target,
-    finder = finders.new_oneshot_job({
-      "find",
-      target_path,
-      "-type",
-      "f",
-    }, {
-      entry_maker = function(file)
-        local path_without_prefix = path_to_display_name(file, target_path)
-        return {
-          value = file,
-          display = function(table)
-            return make_display(table)
-          end,
-          ordinal = path_without_prefix,
-          path = file,
-        }
-      end,
-    }),
-    sorter = conf.generic_sorter(opts),
-  }):find()
+  pickers
+    .new(opts, {
+      prompt_title = target,
+      finder = finders.new_oneshot_job({
+        "find",
+        target_path,
+        "-type",
+        "f",
+      }, {
+        entry_maker = function(file)
+          local path_without_prefix = path_to_display_name(file, target_path)
+          return {
+            value = file,
+            display = function(table)
+              return make_display(table)
+            end,
+            ordinal = path_without_prefix,
+            path = file,
+          }
+        end,
+      }),
+      sorter = conf.generic_sorter(opts),
+    })
+    :find()
 end
 
 local find_models = function(opts)
