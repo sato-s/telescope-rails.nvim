@@ -1,0 +1,6 @@
+- uses: actions/checkout@v3
+- uses: JohnnyMorganz/stylua-action@v3
+  with:
+    token: ${{ secrets.GITHUB_TOKEN }}
+    version: latest # NOTE: we recommend pinning to a specific version in case of formatting changes
+    args: --check .
