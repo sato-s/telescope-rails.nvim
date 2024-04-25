@@ -1,7 +1,6 @@
 name: ci
 on:
-  pull_request:
-    types: [synchronize]
+  pull_request
 jobs:
   lint:
     runs-on: ubuntu-latest
